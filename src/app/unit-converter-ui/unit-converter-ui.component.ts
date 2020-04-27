@@ -40,8 +40,7 @@ export class UnitConverterUiComponent implements OnInit {
     const category = this.categories[this.categoryValue];
     this.currentIcon = category.getIcon();
     this.converters = category.getConverters();
-    this.inputValue = '';
-    this.outputValue = '';
+    this.clearValues();
   }
 
   // set current converter and labels when converter changes
@@ -51,13 +50,17 @@ export class UnitConverterUiComponent implements OnInit {
     this.currentConverter = converter;
     this.inputPrompt = converter.getInputUnit();
     this.outputPrompt = converter.getOutputUnit();
-    this.inputValue = '';
-    this.outputValue = '';
+    this.clearValues();
   }
 
   // Use current converter to output conversion when input changes
   inputChanged(e) {
     this.outputValue = this.currentConverter.convert(this.inputValue);
+  }
+
+  clearValues() {
+    this.inputValue = '';
+    this.outputValue = '';
   }
 
   get inputValue(): string {
